@@ -5,16 +5,15 @@ import { CarListComponent } from './components/car-list/car-list.component';
 import { TeamPlannerComponent } from './components/team-planner/team-planner.component';
 
 const routes: Routes = [
-
-  { path: 'teamPlannerList', component: TeamPlannerComponent},
-  { path: 'activityPlannerList', component: TeamPlannerComponent},
-  { path: 'skillsetPlannerList', component: TeamPlannerComponent},
-  { path: 'availabilityList', component: TeamPlannerComponent},
-  
+  { path: 'teamPlannerList', component: TeamPlannerComponent },
+  { path: 'activityPlannerList', component: TeamPlannerComponent },
+  { path: 'skillsetPlannerList', component: TeamPlannerComponent },
+  { path: 'availabilityList', component: TeamPlannerComponent },
+  // { path: '', redirectTo: 'team-planner', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
