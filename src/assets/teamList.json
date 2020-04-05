@@ -1,0 +1,8 @@
+[
+        {"releaseName": "R6.05 Lot 31", "userName": "Satheesh", "model": "Scrum", "role": "Scrum master", "availability": "50%"},
+		{"releaseName": "R6.05 Lot 31", "userName": "Satheesh", "model": "Scrum", "role": "Team member", "availability": "100%"},
+		{"releaseName": "R6.05 Lot 31", "userName": "Bala", "model": "Scrum", "role": "Team member", "availability": "100%"},
+		{"releaseName": "R6.05 Lot 31", "userName": "Guna", "model": "Scrum", "role": "Team member", "availability": "100%"},
+		{"releaseName": "R6.05 Lot 31", "userName": "Aashiq", "model": "Scrum", "role": "Team member", "availability": "100%"}
+]
+

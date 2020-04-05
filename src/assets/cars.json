@@ -1,0 +1,7 @@
+{
+    "datas": [
+        {"vin": "aaaaaaa", "year": 2010, "brand": "bmw" , "color": "black"},
+        {"vin": "bbb", "year": 2015, "brand": "audi", "color": "red"},
+        {"vin": "ccc", "year": 2020, "brand": "benz", "color": "white"}        
+    ]
+}
