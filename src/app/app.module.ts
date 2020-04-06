@@ -5,9 +5,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {TableModule} from 'primeng/table';
-import {DialogModule} from 'primeng/dialog';
-import {ButtonModule} from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 import { BookDataComponent } from './components/book-data/book-data.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { TeamPlannerComponent } from './components/team-planner/team-planner.component';
 import { ActivityPlannerComponent } from './components/activity-planner/activity-planner.component';
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
-
+import { AddRowDirective } from './components/team-planner/add-row.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { SkillsetPlannerComponent } from './components/skillset-planner/skillset
     RootNavComponent,
     TeamPlannerComponent,
     ActivityPlannerComponent,
-    SkillsetPlannerComponent
+    SkillsetPlannerComponent,
+    AddRowDirective,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +49,9 @@ import { SkillsetPlannerComponent } from './components/skillset-planner/skillset
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

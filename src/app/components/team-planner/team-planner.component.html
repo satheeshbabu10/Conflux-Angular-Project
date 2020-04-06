@@ -8,6 +8,7 @@
   [paginator]="true"
   [rows]="15"
   editMode="row"
+  #dt
 >
   <ng-template pTemplate="caption">
     Team Planner
@@ -145,11 +146,14 @@
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align: left;">
       <button
-        type="button"
         pButton
+        type="button"
         icon="pi pi-plus"
-        (click)="showDialogToAdd()"
-        label="Add"
+        class="ui-button-info"
+        [label]="'Add'"
+        pAddRow
+        [table]="dt"
+        [newRow]="newRow()"
       ></button>
     </div>
   </ng-template>

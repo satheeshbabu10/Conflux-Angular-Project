@@ -9,7 +9,6 @@ import { Team } from 'src/assets/Team';
 })
 export class TeamPlannerComponent implements OnInit {
   displayDialog: boolean;
-
   team: Team = {};
 
   selectedTeam: Team;
@@ -45,19 +44,26 @@ export class TeamPlannerComponent implements OnInit {
     this.team = this.cloneTeam(event.data);
   }
 
+  //To add a new row
+  newRow() {
+    return {
+      releaseName: '',
+      userName: '',
+      model: '',
+      role: '',
+      availability: '',
+    };
+  }
+
   showDialogToAdd() {
     this.newTeam = true;
-    this.team = {};
-    this.displayDialog = true;
   }
 
   save() {
     let teams = [...this.teams];
     if (this.newTeam) teams.push(this.team);
     else teams[this.teams.indexOf(this.selectedTeam)] = this.team;
-
     this.teamPlannerService.addTeam(this.team);
-
     this.teams = teams;
     this.team = null;
     // this.displayDialog = false;
@@ -73,7 +79,7 @@ export class TeamPlannerComponent implements OnInit {
   onRowSelect(event) {
     this.newTeam = false;
     this.team = this.cloneTeam(event.data);
-    this.displayDialog = true;
+    // this.displayDialog = true;
   }
 
   cloneTeam(c: Team): Team {
