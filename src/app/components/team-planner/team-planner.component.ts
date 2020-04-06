@@ -5,12 +5,10 @@ import { Team } from 'src/assets/Team';
 @Component({
   selector: 'app-team-planner',
   templateUrl: './team-planner.component.html',
-  styleUrls: ['./team-planner.component.css']
+  styleUrls: ['./team-planner.component.css'],
 })
 export class TeamPlannerComponent implements OnInit {
-  
   displayDialog: boolean;
-
   team: Team = {};
 
   selectedTeam: Team;
@@ -20,66 +18,75 @@ export class TeamPlannerComponent implements OnInit {
   teams: Team[];
 
   cols: any[];
-
-  constructor(private teamPlannerService: TeamPlannerService) { }
+  //   cloneTeam: { [s: string]: Team } = {};
+  constructor(private teamPlannerService: TeamPlannerService) {}
 
   ngOnInit() {
-      this.teamPlannerService.getTeamListFromJson().
-      then(teams => this.teams = teams);
-	  
-	  this.teamPlannerService.getTeamListFromJson().then(teams => this.teams = teams);
+    this.teamPlannerService
+      .getTeamListFromJson()
+      .then((teams) => (this.teams = teams));
 
-        this.cols = [
-            { field: 'releaseName', header: 'Release Name' },
-            { field: 'userName', header: 'User Name' },
-            { field: 'model', header: 'Model' },
-            { field: 'role', header: 'Role' },
-			{ field: 'availability', header: 'Availability' }
-        ];
-		
+    this.teamPlannerService
+      .getTeamListFromJson()
+      .then((teams) => (this.teams = teams));
+
+    this.cols = [
+      { field: 'releaseName', header: 'Release Name' },
+      { field: 'userName', header: 'User Name' },
+      { field: 'model', header: 'Model' },
+      { field: 'role', header: 'Role' },
+      { field: 'availability', header: 'Availability' },
+    ];
   }
-  
-showDialogToAdd() {
-    this.newTeam = true;
-    this.team = {};
-    this.displayDialog = true;
-}
 
-save() {
+  onRowEditInit(event) {
+    this.newTeam = false;
+    this.team = this.cloneTeam(event.data);
+  }
+
+  //To add a new row
+  newRow() {
+    return {
+      releaseName: '',
+      userName: '',
+      model: '',
+      role: '',
+      availability: '',
+    };
+  }
+
+  showDialogToAdd() {
+    this.newTeam = true;
+  }
+
+  save() {
     let teams = [...this.teams];
-    if (this.newTeam)
-        teams.push(this.team);
-    else
-        teams[this.teams.indexOf(this.selectedTeam)] = this.team;
-	
-	this.teamPlannerService.addTeam(this.team);
-	
+    if (this.newTeam) teams.push(this.team);
+    else teams[this.teams.indexOf(this.selectedTeam)] = this.team;
+    this.teamPlannerService.addTeam(this.team);
     this.teams = teams;
     this.team = null;
-    this.displayDialog = false;
-	
-	
-}
+    // this.displayDialog = false;
+  }
 
-delete() {
+  delete() {
     let index = this.teams.indexOf(this.selectedTeam);
     this.teams = this.teams.filter((val, i) => i != index);
     this.team = null;
     this.displayDialog = false;
-}
+  }
 
-onRowSelect(event) {
+  onRowSelect(event) {
     this.newTeam = false;
     this.team = this.cloneTeam(event.data);
-    this.displayDialog = true;
-}
+    // this.displayDialog = true;
+  }
 
-cloneTeam(c: Team): Team {
+  cloneTeam(c: Team): Team {
     let team = {};
     for (let prop in c) {
-        team[prop] = c[prop];
+      team[prop] = c[prop];
     }
     return team;
-}
-
+  }
 }

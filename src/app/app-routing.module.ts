@@ -8,16 +8,14 @@ import { SkillsetPlannerComponent } from './components/skillset-planner/skillset
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
 
 const routes: Routes = [
-
   { path: 'teamPlannerList', component: TeamPlannerComponent},
   { path: 'activityPlannerList', component: CarListComponent},
   { path: 'skillsetPlannerList', component: SkillsetPlannerComponent},
   { path: 'availabilityList', component: TeamAvailabilityComponent},
-  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

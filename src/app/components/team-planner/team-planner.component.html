@@ -1,77 +1,231 @@
-<p-table [columns]="cols" [value]="teams" selectionMode="single" [(selection)]="selectedTeam" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
-    <ng-template pTemplate="caption">
-        Team Planner
-    </ng-template>
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr [pSelectableRow]="rowData">
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="summary" let-rowData>
-        <div style="text-align:left">
-            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
-        </div>
-    </ng-template>  
+<!-- <router-outlet></router-outlet> -->
+<p-table
+  [columns]="cols"
+  [value]="teams"
+  selectionMode="single"
+  [(selection)]="selectedTeam"
+  (onRowSelect)="onRowSelect($event)"
+  [paginator]="true"
+  [rows]="15"
+  editMode="row"
+  #dt
+>
+  <ng-template pTemplate="caption">
+    Team Planner
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+      <th style="width: 8em;"></th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-columns="columns"
+    let-editing="editing"
+  >
+    <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+      <td>
+        <!-- {{ rowData[col.field] }} -->
+        <!-- For Release Name -->
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="rowData.releaseName"
+              required
+            />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ rowData.releaseName }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <!-- For username-->
+
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="rowData.userName"
+              required
+            />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ rowData.userName }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <!-- {{ For Model}} -->
+
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="rowData.model"
+              required
+            />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ rowData.model }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <!-- For Role-->
+
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="rowData.role" required />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ rowData.role }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <!-- For Availability -->
+
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="rowData.availability"
+              required
+            />
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{ rowData.availability }}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td style="text-align: center;">
+        <button
+          *ngIf="!editing"
+          pButton
+          type="button"
+          pInitEditableRow
+          icon="pi pi-pencil"
+          class="ui-button-info"
+          (click)="onRowEditInit(rowData)"
+        ></button>
+        <button
+          *ngIf="editing"
+          pButton
+          type="button"
+          pSaveEditableRow
+          icon="pi pi-check"
+          class="ui-button-success"
+          style="margin-right: 0.5em;"
+          (click)="save()"
+        ></button>
+        <button
+          *ngIf="editing"
+          pButton
+          type="button"
+          pCancelEditableRow
+          icon="pi pi-times"
+          class="ui-button-danger"
+          (click)="delete()"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- Add Button/Adding new user -->
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align: left;">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-plus"
+        class="ui-button-info"
+        [label]="'Add'"
+        pAddRow
+        [table]="dt"
+        [newRow]="newRow()"
+      ></button>
+    </div>
+  </ng-template>
 </p-table>
 
-<p-dialog header="Team Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '400px'}">
-    <div class="ui-g ui-fluid" *ngIf="team">
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="vin">Release Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="vin" [(ngModel)]="team.releaseName" autofocus />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="year">User Name</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="year" [(ngModel)]="team.userName" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="brand">Model</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="brand" [(ngModel)]="team.model" />
-            </div>
-        </div>
-        <div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="color">Role</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="color" [(ngModel)]="team.role" />
-            </div>
-        </div>
-		<div class="ui-g-12">
-            <div class="ui-g-4">
-                <label for="color">Availability</label>
-            </div>
-            <div class="ui-g-8">
-                <input pInputText id="availability" [(ngModel)]="team.availability" />
-            </div>
-        </div>
+<!-- <p-dialog
+  header="Team Details"
+  [(visible)]="displayDialog"
+  [focusOnShow]="false"
+  [responsive]="true"
+  showEffect="fade"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+>
+  <div class="ui-g ui-fluid" *ngIf="team">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="vin">Release Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="vin" [(ngModel)]="team.releaseName" autofocus />
+      </div>
     </div>
-    <p-footer>
-        <div class="ui-dialog-buttonpane ui-helper-clearfix">
-            <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>
-            <button type="button" pButton icon="pi pi-check" (click)="save()" label="Save"></button>
-        </div>
-    </p-footer>
-
-</p-dialog>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="year">User Name</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="year" [(ngModel)]="team.userName" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="brand">Model</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="brand" [(ngModel)]="team.model" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">Role</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="color" [(ngModel)]="team.role" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">Availability</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText id="availability" [(ngModel)]="team.availability" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button
+        type="button"
+        pButton
+        icon="pi pi-times"
+        (click)="delete()"
+        label="Delete"
+      ></button>
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        (click)="save()"
+        label="Save"
+      ></button>
+    </div>
+  </p-footer>
+</p-dialog> -->
