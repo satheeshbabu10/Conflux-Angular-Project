@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamPlannerService } from 'src/app/services/team-planner.service';
 import { Team } from 'src/assets/Team';
-
 @Component({
   selector: 'app-team-planner',
   templateUrl: './team-planner.component.html',
@@ -18,9 +17,11 @@ export class TeamPlannerComponent implements OnInit {
   teams: Team[];
 
   cols: any[];
+
   //   cloneTeam: { [s: string]: Team } = {};
   constructor(private teamPlannerService: TeamPlannerService) {}
 
+  //constructor(private confirmdialog: ConfirmDialog){}
   ngOnInit() {
     this.teamPlannerService
       .getTeamListFromJson()
@@ -58,7 +59,7 @@ export class TeamPlannerComponent implements OnInit {
       availability: '',
     };
   }
-
+  
   showDialogToAdd() {
     this.newTeam = true;
   }

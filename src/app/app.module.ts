@@ -38,7 +38,9 @@ import { TeamAvailabilityComponent } from './components/team-availability/team-a
     ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
-    TeamAvailabilityComponent
+    TeamAvailabilityComponent,
+    ConfirmDialogModule
+    
   ],
   imports: [
     BrowserModule,
