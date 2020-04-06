@@ -43,6 +43,10 @@ export class TeamPlannerComponent implements OnInit {
     this.newTeam = false;
     this.team = this.cloneTeam(event.data);
   }
+  onRowEditCancel(event) {
+    // this.cars2[index] = this.clonedCars[car.vin];
+    delete this.cloneTeam[event.data];
+  }
 
   //To add a new row
   newRow() {

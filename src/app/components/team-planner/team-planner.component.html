@@ -120,6 +120,14 @@
           (click)="onRowEditInit(rowData)"
         ></button>
         <button
+          *ngIf="!editing"
+          pButton
+          type="button"
+          icon="pi pi-trash"
+          class="ui-button-cancel"
+          (click)="delete()"
+        ></button>
+        <button
           *ngIf="editing"
           pButton
           type="button"
@@ -136,7 +144,7 @@
           pCancelEditableRow
           icon="pi pi-times"
           class="ui-button-danger"
-          (click)="delete()"
+          (click)="onRowEditCancel(rowData)"
         ></button>
       </td>
     </tr>
@@ -158,6 +166,13 @@
     </div>
   </ng-template>
 </p-table>
+
+<!-- Tried Confirm dialog but not finished -->
+
+<!-- <p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+></p-confirmDialog> -->
 
 <!-- <p-dialog
   header="Team Details"
