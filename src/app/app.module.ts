@@ -23,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
 import { TeamPlannerComponent } from './components/team-planner/team-planner.component';
 import { ActivityPlannerComponent } from './components/activity-planner/activity-planner.component';
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
+import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SkillsetPlannerComponent } from './components/skillset-planner/skillset
     RootNavComponent,
     TeamPlannerComponent,
     ActivityPlannerComponent,
-    SkillsetPlannerComponent
+    SkillsetPlannerComponent,
+    TeamAvailabilityComponent
   ],
   imports: [
     BrowserModule,
