@@ -26,6 +26,8 @@ import { TeamPlannerComponent } from './components/team-planner/team-planner.com
 import { ActivityPlannerComponent } from './components/activity-planner/activity-planner.component';
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
 import { AddRowDirective } from './components/team-planner/add-row.directive';
+import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { AddRowDirective } from './components/team-planner/add-row.directive';
     ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
+    TeamAvailabilityComponent
   ],
   imports: [
     BrowserModule,
