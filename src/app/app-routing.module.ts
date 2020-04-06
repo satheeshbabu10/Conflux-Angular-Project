@@ -9,7 +9,7 @@ import { TeamAvailabilityComponent } from './components/team-availability/team-a
 
 const routes: Routes = [
   { path: 'teamPlannerList', component: TeamPlannerComponent},
-  { path: 'activityPlannerList', component: CarListComponent},
+  { path: 'activityPlannerList', component: ActivityPlannerComponent},
   { path: 'skillsetPlannerList', component: SkillsetPlannerComponent},
   { path: 'availabilityList', component: TeamAvailabilityComponent},
 ];

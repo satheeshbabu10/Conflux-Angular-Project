@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+
 
 import { BookDataComponent } from './components/book-data/book-data.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,8 +37,7 @@ import { TeamAvailabilityComponent } from './components/team-availability/team-a
     ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
-    TeamAvailabilityComponent,
-    ConfirmDialogModule
+    TeamAvailabilityComponent
     
   ],
   imports: [

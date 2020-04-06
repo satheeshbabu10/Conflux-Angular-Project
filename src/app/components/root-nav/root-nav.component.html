@@ -1,43 +1,16 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <!-- <a mat-list-item [routerLink]="['/']">Home</a> -->
-
-      <a
-        mat-list-item
-        [routerLink]="['teamPlannerList']"
-        routerLinkActive="active"
-        >Team Planner</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['activityPlannerList']"
-        routerLinkActive="active"
-        >Activity Planner</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['skillsetPlannerList']"
-        routerLinkActive="active"
-        >Skillset Planner</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['availabilityList']"
-        routerLinkActive="active"
-        >Availability</a
-      >
+      <a mat-list-item [routerLink]="['teamPlannerList']">Team Planner</a>
+      <a mat-list-item [routerLink]="['activityPlannerList']">Activity Planner</a>
+      <a mat-list-item [routerLink]="['skillsetPlannerList']">Skillset Planner</a>
+	  <a mat-list-item [routerLink]="['availabilityList']">Availability</a>
     </mat-nav-list>
   </mat-sidenav>
-  <!-- <router-outlet></router-outlet> -->
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
@@ -45,14 +18,12 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
+        *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>CONFLUX APPLICATION</span>
-      <!-- <router-outlet></router-outlet> -->
     </mat-toolbar>
-    <ng-content></ng-content>
+<ng-content></ng-content>
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>
