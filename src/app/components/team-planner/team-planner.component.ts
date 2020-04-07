@@ -1,67 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamPlannerService } from 'src/app/services/team-planner.service';
 import { Team } from 'src/assets/Team';
+import { SelectItem } from 'primeng/api';
+
 @Component({
   selector: 'app-team-planner',
   templateUrl: './team-planner.component.html',
   styleUrls: ['./team-planner.component.css'],
 })
+
 export class TeamPlannerComponent implements OnInit {
-  displayDialog: boolean;
-  team: Team = {};
-
-  selectedTeam: Team;
-
-  newTeam: boolean;
 
   teams: Team[];
 
   cols: any[];
-
-  // To differentiate varuables i have used "1" as suffix for already smallcase variables
-  release_name: any[];
-  user_name: any[];
-  model1: any[];
-  role1: any[];
-  availability1: any[];
-
-
-
-  //   cloneTeam: { [s: string]: Team } = {};
-
+  
+  clonedTeam: { [s: string]: Team; } = {};
+  
+  releaseNamesList: SelectItem[];
+  userNameList: SelectItem[];
+  modelList: SelectItem[];
+  roleList: SelectItem[];
+  availability: SelectItem[];
+  
   constructor(private teamPlannerService: TeamPlannerService) { }
 
-  // We can define the confirm dialog in TeamPlannerService and we can use it here
-
   ngOnInit() {
-    this.teamPlannerService
-      .getTeamListFromJson()
-      .then((teams) => (this.teams = teams));
-
-    // ReleaseName
-    this.teamPlannerService
-      .getReleaseNameFromJson()
-      .then((release_name) => (this.release_name = release_name));
-
-    // Username 
-    this.teamPlannerService
-      .getUserNameFromJson()
-      .then((user_name) => (this.user_name = user_name));
-
-    // Model Name
-    this.teamPlannerService
-      .getModelFromJson()
-      .then((model1) => (this.model1 = model1));
-
-    // Role Name
-    this.teamPlannerService
-      .getRoleFromJson()
-      .then((role1) => (this.role1 = role1));
-
-    // Availability
-    this.teamPlannerService
-      .getAvailabilityFromJson()
-      .then((availability1) => (this.availability1 = availability1));
+    this.teamPlannerService.getTeamListFromJson().then((teams) => (this.teams = teams));
 
     this.cols = [
       { field: 'releaseName', header: 'Release Name' },
@@ -70,17 +35,45 @@ export class TeamPlannerComponent implements OnInit {
       { field: 'role', header: 'Role' },
       { field: 'availability', header: 'Availability' },
     ];
+	
+	this.teamPlannerService.getReleaseNameFromJson().then((releaseNamesList) => (this.releaseNamesList = releaseNamesList));
+	this.teamPlannerService.getUserNameFromJson().then((userNameList) => (this.userNameList = userNameList));
+	this.teamPlannerService.getModelFromJson().then((modelList) => (this.modelList = modelList));
+	this.teamPlannerService.getRoleFromJson().then((roleList) => (this.roleList = roleList));
+	this.teamPlannerService.getAvailabilityFromJson().then((availability) => (this.availability = availability));
+	
   }
 
-  onRowEditInit(event) {
-    this.newTeam = false;
-    this.team = this.cloneTeam(event.data);
+  onRowEditInit(team : Team) {
+	console.log("team keyReference: "+ team.keyReference);
+    this.clonedTeam[team.keyReference] = {...team};
   }
-  onRowEditCancel(event) {
-    // this.cars2[index] = this.clonedCars[car.vin];
-    delete this.cloneTeam[event.data];
+  
+  onRowEditCancel(team : Team, index: number) {
+    this.teams[index] = this.clonedTeam[team.keyReference];
+    delete this.clonedTeam[team.keyReference];
   }
-
+  
+  onRowEditDelete(team : Team) {
+    //this.messageService.add({severity:'success', summary: 'Success', detail:'Car is updated'});
+    let index = this.teams.indexOf(team);
+    this.teams = this.teams.filter((val, i) => i != index);
+    
+  }
+  
+  onRowEditSave(team : Team) {
+    console.log("team userName: "+ team.userName);
+	team.keyReference = team.releaseName + team.userName + team.model + team.role;
+	if( team.keyReference ) {
+		
+	} else {
+		
+	}
+	
+    //this.messageService.add({severity:'success', summary: 'Success', detail:'Car is updated'});
+        
+  }
+  
   //To add a new row
   newRow() {
     return {
@@ -92,38 +85,4 @@ export class TeamPlannerComponent implements OnInit {
     };
   }
 
-  // showDialogToAdd() {
-  //   this.newTeam = true;
-  // }
-
-  save() {
-    let teams = [...this.teams];
-    if (this.newTeam) teams.push(this.team);
-    else teams[this.teams.indexOf(this.selectedTeam)] = this.team;
-    this.teamPlannerService.addTeam(this.team);
-    this.teams = teams;
-    this.team = null;
-    // this.displayDialog = false;
-  }
-
-  delete() {
-    let index = this.teams.indexOf(this.selectedTeam);
-    this.teams = this.teams.filter((val, i) => i != index);
-    this.team = null;
-    // this.displayDialog = false;
-  }
-
-  onRowSelect(event) {
-    this.newTeam = false;
-    this.team = this.cloneTeam(event.data);
-    // this.displayDialog = true;
-  }
-
-  cloneTeam(c: Team): Team {
-    let team = {};
-    for (let prop in c) {
-      team[prop] = c[prop];
-    }
-    return team;
-  }
 }

@@ -1,0 +1,7 @@
+[
+	{"value" : "", "label" : ""},
+	{"value" : "Product Owner", "label" : "Product Owner"},
+    {"value" : "Scrum Master", "label" : "Scrum Master"},
+	{"value" : "Team Member", "label" : "Team Member"},
+	{"value" : "Tester", "label" : "Tester"}
+]

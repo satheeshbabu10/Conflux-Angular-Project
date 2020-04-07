@@ -18,7 +18,7 @@ export class TeamPlannerService {
   }
   getReleaseNameFromJson() {
     return this.http
-      .get<any>('assets/teamList/releaseName.json')
+      .get<any>('assets/releaseNamesList.json')
       .toPromise()
       .then((res) => res)
       .then((data) => {
@@ -28,7 +28,7 @@ export class TeamPlannerService {
 
   getUserNameFromJson() {
     return this.http
-      .get<any>('assets/teamList/userName.json')
+      .get<any>('assets/userList.json')
       .toPromise()
       .then((res) => res)
       .then((data) => {
@@ -38,7 +38,7 @@ export class TeamPlannerService {
 
   getModelFromJson() {
     return this.http
-      .get<any>('assets/teamList/model.json')
+      .get<any>('assets/modelList.json')
       .toPromise()
       .then((res) => res)
       .then((data) => {
@@ -48,7 +48,7 @@ export class TeamPlannerService {
 
   getRoleFromJson() {
     return this.http
-      .get<any>('assets/teamList/role.json')
+      .get<any>('assets/roleList.json')
       .toPromise()
       .then((res) => res)
       .then((data) => {
@@ -57,7 +57,7 @@ export class TeamPlannerService {
   }
   getAvailabilityFromJson() {
     return this.http
-      .get<any>('assets/teamList/availability.json')
+      .get<any>('assets/availabilityList.json')
       .toPromise()
       .then((res) => res)
       .then((data) => {
