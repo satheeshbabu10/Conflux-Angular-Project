@@ -1,15 +1,6 @@
 <!-- <router-outlet></router-outlet> -->
-<p-table
-  [columns]="cols"
-  [value]="teams"
-  selectionMode="single"
-  [(selection)]="selectedTeam"
-  (onRowSelect)="onRowSelect($event)"
-  [paginator]="true"
-  [rows]="15"
-  editMode="row"
-  #dt
->
+<p-table [columns]="cols" [value]="teams" selectionMode="single" [(selection)]="selectedTeam"
+  (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15" editMode="row" #dt>
   <ng-template pTemplate="caption">
     Team Planner
   </ng-template>
@@ -22,24 +13,15 @@
       <th style="width: 8em;"></th>
     </tr>
   </ng-template>
-  <ng-template
-    pTemplate="body"
-    let-rowData
-    let-columns="columns"
-    let-editing="editing"
-  >
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-editing="editing">
     <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
       <td>
         <!-- {{ rowData[col.field] }} -->
         <!-- For Release Name -->
         <p-cellEditor>
           <ng-template pTemplate="input">
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="rowData.releaseName"
-              required
-            />
+            <p-dropdown [options]="release_name" [(ngModel)]="rowData.releaseName" [style]="{'width':'100%'}">
+            </p-dropdown>
           </ng-template>
           <ng-template pTemplate="output">
             {{ rowData.releaseName }}
@@ -51,12 +33,7 @@
 
         <p-cellEditor>
           <ng-template pTemplate="input">
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="rowData.userName"
-              required
-            />
+            <input pInputText type="text" [(ngModel)]="rowData.userName" required />
           </ng-template>
           <ng-template pTemplate="output">
             {{ rowData.userName }}
@@ -68,12 +45,7 @@
 
         <p-cellEditor>
           <ng-template pTemplate="input">
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="rowData.model"
-              required
-            />
+            <input pInputText type="text" [(ngModel)]="rowData.model" required />
           </ng-template>
           <ng-template pTemplate="output">
             {{ rowData.model }}
@@ -97,12 +69,7 @@
 
         <p-cellEditor>
           <ng-template pTemplate="input">
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="rowData.availability"
-              required
-            />
+            <input pInputText type="text" [(ngModel)]="rowData.availability" required />
           </ng-template>
           <ng-template pTemplate="output">
             {{ rowData.availability }}
@@ -110,44 +77,16 @@
         </p-cellEditor>
       </td>
       <td style="text-align: center;">
-        <button
-          *ngIf="!editing"
-          pButton
-          type="button"
-          pInitEditableRow
-          icon="pi pi-pencil"
-          class="ui-button-info"
-          (click)="onRowEditInit(this.rowData)"
-        ></button>
+        <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
+          (click)="onRowEditInit(this.rowData)"></button>
         <!-- Added this in onRowEditInit -->
 
-        <button
-          *ngIf="!editing"
-          pButton
-          type="button"
-          icon="pi pi-trash"
-          class="ui-button-cancel"
-          (click)="delete()"
-        ></button>
-        <button
-          *ngIf="editing"
-          pButton
-          type="button"
-          pSaveEditableRow
-          icon="pi pi-check"
-          class="ui-button-success"
-          style="margin-right: 0.5em;"
-          (click)="save()"
-        ></button>
-        <button
-          *ngIf="editing"
-          pButton
-          type="button"
-          pCancelEditableRow
-          icon="pi pi-times"
-          class="ui-button-danger"
-          (click)="onRowEditCancel(rowData)"
-        ></button>
+        <button *ngIf="!editing" pButton type="button" icon="pi pi-trash" class="ui-button-cancel"
+          (click)="delete()"></button>
+        <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+          style="margin-right: 0.5em;" (click)="save()"></button>
+        <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
+          (click)="onRowEditCancel(rowData)"></button>
       </td>
     </tr>
   </ng-template>
@@ -155,16 +94,8 @@
   <!-- Add Button/Adding new user -->
   <ng-template pTemplate="summary" let-rowData>
     <div style="text-align: left;">
-      <button
-        pButton
-        type="button"
-        icon="pi pi-plus"
-        class="ui-button-info"
-        [label]="'Add'"
-        pAddRow
-        [table]="dt"
-        [newRow]="newRow()"
-      ></button>
+      <button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow [table]="dt"
+        [newRow]="newRow()"></button>
     </div>
   </ng-template>
 </p-table>
