@@ -1,4 +1,5 @@
 export interface Team {
+	keyReference?;
     releaseName?;
 	userName?;
 	model?;
