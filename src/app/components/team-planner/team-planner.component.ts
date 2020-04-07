@@ -18,18 +18,50 @@ export class TeamPlannerComponent implements OnInit {
 
   cols: any[];
 
-  //   cloneTeam: { [s: string]: Team } = {};
-  constructor(private teamPlannerService: TeamPlannerService) {}
+  // To differentiate varuables i have used "1" as suffix for already smallcase variables
+  release_name: any[];
+  user_name: any[];
+  model1: any[];
+  role1: any[];
+  availability1: any[];
 
-  //constructor(private confirmdialog: ConfirmDialog){}
+
+
+  //   cloneTeam: { [s: string]: Team } = {};
+
+  constructor(private teamPlannerService: TeamPlannerService) { }
+
+  // We can define the confirm dialog in TeamPlannerService and we can use it here
+
   ngOnInit() {
     this.teamPlannerService
       .getTeamListFromJson()
       .then((teams) => (this.teams = teams));
 
+    // ReleaseName
     this.teamPlannerService
-      .getTeamListFromJson()
-      .then((teams) => (this.teams = teams));
+      .getReleaseNameFromJson()
+      .then((release_name) => (this.release_name = release_name));
+
+    // Username 
+    this.teamPlannerService
+      .getUserNameFromJson()
+      .then((user_name) => (this.user_name = user_name));
+
+    // Model Name
+    this.teamPlannerService
+      .getModelFromJson()
+      .then((model1) => (this.model1 = model1));
+
+    // Role Name
+    this.teamPlannerService
+      .getRoleFromJson()
+      .then((role1) => (this.role1 = role1));
+
+    // Availability
+    this.teamPlannerService
+      .getAvailabilityFromJson()
+      .then((availability1) => (this.availability1 = availability1));
 
     this.cols = [
       { field: 'releaseName', header: 'Release Name' },
@@ -59,10 +91,10 @@ export class TeamPlannerComponent implements OnInit {
       availability: '',
     };
   }
-  
-  showDialogToAdd() {
-    this.newTeam = true;
-  }
+
+  // showDialogToAdd() {
+  //   this.newTeam = true;
+  // }
 
   save() {
     let teams = [...this.teams];
@@ -78,7 +110,7 @@ export class TeamPlannerComponent implements OnInit {
     let index = this.teams.indexOf(this.selectedTeam);
     this.teams = this.teams.filter((val, i) => i != index);
     this.team = null;
-    this.displayDialog = false;
+    // this.displayDialog = false;
   }
 
   onRowSelect(event) {

@@ -26,7 +26,7 @@ import { ActivityPlannerComponent } from './components/activity-planner/activity
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
 import { AddRowDirective } from './components/team-planner/add-row.directive';
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,11 +34,12 @@ import { TeamAvailabilityComponent } from './components/team-availability/team-a
     CarListComponent,
     RootNavComponent,
     TeamPlannerComponent,
+
     ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
     TeamAvailabilityComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -55,8 +56,9 @@ import { TeamAvailabilityComponent } from './components/team-availability/team-a
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
