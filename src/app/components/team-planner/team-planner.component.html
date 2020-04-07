@@ -64,7 +64,7 @@
         </p-cellEditor>
       </td>
       <td>
-        <!-- {{ For Model}} -->
+        <!-- For Model -->
 
         <p-cellEditor>
           <ng-template pTemplate="input">
@@ -81,7 +81,7 @@
         </p-cellEditor>
       </td>
       <td>
-        <!-- For Role-->
+        <!--For Role-->
 
         <p-cellEditor>
           <ng-template pTemplate="input">
@@ -117,8 +117,10 @@
           pInitEditableRow
           icon="pi pi-pencil"
           class="ui-button-info"
-          (click)="onRowEditInit(rowData)"
+          (click)="onRowEditInit(this.rowData)"
         ></button>
+        <!-- Added this in onRowEditInit -->
+
         <button
           *ngIf="!editing"
           pButton

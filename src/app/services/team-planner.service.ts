@@ -16,7 +16,56 @@ export class TeamPlannerService {
         return data;
       });
   }
+  getReleaseNameFromJson() {
+    return this.http
+      .get<any>('assets/teamList/releaseName.json')
+      .toPromise()
+      .then((res) => res)
+      .then((data) => {
+        return data;
+      });
+  }
 
+  getUserNameFromJson() {
+    return this.http
+      .get<any>('assets/teamList/userName.json')
+      .toPromise()
+      .then((res) => res)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getModelFromJson() {
+    return this.http
+      .get<any>('assets/teamList/model.json')
+      .toPromise()
+      .then((res) => res)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  getRoleFromJson() {
+    return this.http
+      .get<any>('assets/teamList/role.json')
+      .toPromise()
+      .then((res) => res)
+      .then((data) => {
+        return data;
+      });
+  }
+  getAvailabilityFromJson() {
+    return this.http
+      .get<any>('assets/teamList/availability.json')
+      .toPromise()
+      .then((res) => res)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  // From servers
   getTeamlist() {
     return this.http
       .get<any>('http://localhost:9000/getTeamList')
