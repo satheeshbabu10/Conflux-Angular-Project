@@ -1,4 +1,4 @@
 [
-	{"value" : "1", "label" : "scrum"},
-    {"value" : "2", "label" : "Kanban"}
+	{"value" : "Scrum", "label" : "Scrum"},
+    {"value" : "Kanban", "label" : "Kanban"}
 ]
