@@ -1,7 +1,15 @@
 <p-table [value]="teams" dataKey="keyReference" editMode="row" [columns]="cols" selectionMode="single"
   [paginator]="true" [rows]="15" #dt>
-  <ng-template pTemplate="caption">Team Planner</ng-template>
+  <ng-template pTemplate="caption">Team Planner
+    <div style="text-align: right">
+      <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" pInputText size="50" placeholder="Global Filter"
+        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    </div>
+  </ng-template>
+  <!-- <ng-template pTemplate="caption">
 
+  </ng-template> -->
   <ng-template pTemplate="header">
     <tr>
       <th>Release Name</th>
@@ -13,6 +21,14 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+    <!-- <tr>
+      <td>
+        <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands">
+
+        </p-autoComplete>
+      </td>
+
+    </tr>-->
     <tr [pEditableRow]="rowData">
       <td>
         <p-cellEditor>
@@ -91,5 +107,5 @@
   </ng-template>
 </p-table>
 <!-- ConfirmDialog box for Delete -->
-<p-confirmDialog header="Drop Row" acceptLabel="Yes" rejectLabel="No" [(visible)]="confirmDialogVisible">
+<p-confirmDialog header="Delete Row" acceptLabel="Yes" rejectLabel="No" [(visible)]="confirmDialogVisible">
 </p-confirmDialog>

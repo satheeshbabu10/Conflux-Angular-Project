@@ -31,9 +31,11 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
 
 @NgModule({
-  declarations: [
+  declarations: [  //For Components
     AppComponent,
     BookDataComponent,
     CarListComponent,
@@ -46,7 +48,7 @@ import { ConfirmationService } from 'primeng/api';
     TeamAvailabilityComponent
 
   ],
-  imports: [
+  imports: [ //For Modules and other third party dependency modules like PrimeNg
     BrowserModule,
     AppRoutingModule,
     TableModule,
@@ -62,7 +64,10 @@ import { ConfirmationService } from 'primeng/api';
     MatIconModule,
     MatListModule,
     DropdownModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    AutoCompleteModule
+    
+    
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent],

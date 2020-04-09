@@ -9,6 +9,7 @@ import { SelectItem } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Confirmation } from 'primeng/api';
+import { FilterUtils } from 'primeng/utils';
 
 
 @Component({
@@ -33,7 +34,11 @@ export class TeamPlannerComponent implements OnInit {
   modelList: SelectItem[];
   roleList: SelectItem[];
   availability: SelectItem[];
+
+  // PrimeNG dialog does not hide unless there is a two-way binding to [(visible)]
+  // https://github.com/primefaces/primeng/issues/6493
   confirmDialogVisible = false;
+
   constructor(private confirmationservice: ConfirmationService, private teamPlannerService: TeamPlannerService) { }
 
   ngOnInit() {
@@ -70,7 +75,7 @@ export class TeamPlannerComponent implements OnInit {
     //this.messageService.add({severity:'success', summary: 'Success', detail:'Car is updated'});
 
     this.confirmationservice.confirm({
-      message: 'Are you sure that you want to perform this action?',
+      message: 'Are you sure you want to delete this record?',
       accept: () => {
         let index = this.teams.indexOf(team);
         this.teams = this.teams.filter((val, i) => i != index);
