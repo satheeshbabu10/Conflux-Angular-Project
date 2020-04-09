@@ -1,1 +1,137 @@
-<p>activity-planner works!</p>
+<mat-card>
+<form [formGroup] = "activityPlannerService.form" class="normal-form" (submit) = "onSubmit()">
+	<mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+			<div class="controlers-container">
+				<input type="hidden" formControlName="$key">
+				
+				<mat-form-field>
+                    <mat-select formControlName="releaseName" placeholder="Release Name *">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let release of releaseArray">
+                            <mat-option value = "{{release.label}}">{{release.value}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+				<mat-form-field>
+                    <mat-select formControlName="sprintName" placeholder="Sprint Name *" multiple>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let sprint of sprintArray">
+                            <mat-option value = "{{sprint.label}}">{{sprint.value}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+				<mat-form-field>
+                    <mat-select formControlName="userName" placeholder="User Name *" multiple>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let user of userArray">
+                            <mat-option value = "{{user.label}}">{{user.value}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select formControlName="activity" placeholder="Activities *" multiple>
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let activity of activitiesArray">
+                            <mat-option value = "{{activity.label}}">{{activity.value}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+					<input formControlName="plannedEffort" matInput placeholder="Planned Efforts">
+                    
+                    <mat-error>This field is mandatory</mat-error>
+                </mat-form-field>
+				<div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="activityPlannerService.form.invalid">Submit</button>
+                    <button mat-raised-button color="warn" (click) = "onClear()">Clear</button>
+                </div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
+</mat-card>
+
+<mat-card>
+	<p-table [value]="activityList" dataKey="keyReference" editMode="row" [columns]="cols" selectionMode="single"
+  [paginator]="true" [rows]="100" #dt>
+  <ng-template pTemplate="caption">Activity Planner</ng-template>
+	  
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Release Name</th>
+      <th>Sprint Name</th>
+      <th>User Name</th>
+      <th>Activity</th>
+      <th>Planned Effort</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="rowData">
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="releaseArray" [(ngModel)]="rowData.releaseName" [style]="{'width':'100%'}"
+              required></p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.releaseName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="sprintArray" [(ngModel)]="rowData.sprintName" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.sprintName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="userArray" [(ngModel)]="rowData.userName" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+
+          <ng-template pTemplate="output">
+            {{rowData.userName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="activitiesArray" [(ngModel)]="rowData.activity" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.activity}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            {{rowData.plannedEffort}}
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.plannedEffort}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      
+    </tr>
+  </ng-template>
+  <!-- Add Button/Adding new user -->
+ 
+</p-table>
+
+</mat-card>
