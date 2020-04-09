@@ -5,9 +5,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TableModule } from 'primeng/table';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
 
 
 import { BookDataComponent } from './components/book-data/book-data.component';
@@ -26,7 +23,15 @@ import { ActivityPlannerComponent } from './components/activity-planner/activity
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
 import { AddRowDirective } from './components/team-planner/add-row.directive';
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
+
+// PrimeNg
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,9 +61,10 @@ import { DropdownModule } from 'primeng/dropdown';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    DropdownModule
+    DropdownModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
