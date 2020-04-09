@@ -1,81 +1,95 @@
-<p-table [value]="teams" dataKey="keyReference" editMode="row" [columns]="cols" selectionMode="single" [paginator]="true" [rows]="15" #dt>
-	<ng-template pTemplate="caption">Team Planner</ng-template>
-  
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Release Name</th>
-            <th>User Name</th>
-            <th>Model</th>
-            <th>Role</th>
-            <th>Availability</th>
-            <th>Action</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
-        <tr [pEditableRow]="rowData">
-            <td>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                    <p-dropdown [options]="releaseNamesList" [(ngModel)]="rowData.releaseName" [style]="{'width':'100%'}" required></p-dropdown>
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{rowData.releaseName}}
-                </ng-template>
-            </p-cellEditor>
-            </td>
-            <td>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <p-dropdown [options]="userNameList" [(ngModel)]="rowData.userName" [style]="{'width':'100%'}" required></p-dropdown>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{rowData.userName}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td>
-              <p-cellEditor>
-					<ng-template pTemplate="input">
-                        <p-dropdown [options]="modelList" [(ngModel)]="rowData.model" [style]="{'width':'100%'}" required></p-dropdown>
-                    </ng-template>
-              
-                <ng-template pTemplate="output">
-                    {{rowData.model}}
-                </ng-template>
-            </p-cellEditor>
-            </td>
-            <td>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <p-dropdown [options]="roleList" [(ngModel)]="rowData.role" [style]="{'width':'100%'}" required></p-dropdown>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{rowData.role}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td>
-              <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <p-dropdown [options]="availability" [(ngModel)]="rowData.availability" [style]="{'width':'100%'}" required></p-dropdown>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      {{rowData.availability}}
-                  </ng-template>
-              </p-cellEditor>
-          </td>
-            <td style="text-align:center">
-                <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)" style="margin-right: .5em" ></button>
-				<button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="ui-button-cancel" (click)="onRowEditDelete(rowData)" style="margin-right: .5em" ></button>
-                <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" (click)="onRowEditSave(rowData)" style="margin-right: .5em" ></button>
-                <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
-            </td>
-        </tr>
-    </ng-template>
-	  <!-- Add Button/Adding new user -->
-	<ng-template pTemplate="summary" let-rowData>
-		<div style="text-align: left;">
-			<button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow [table]="dt" [newRow]="newRow()"></button>
-		</div>
+<p-table [value]="teams" dataKey="keyReference" editMode="row" [columns]="cols" selectionMode="single"
+  [paginator]="true" [rows]="15" #dt>
+  <ng-template pTemplate="caption">Team Planner</ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Release Name</th>
+      <th>User Name</th>
+      <th>Model</th>
+      <th>Role</th>
+      <th>Availability</th>
+      <th>Action</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+    <tr [pEditableRow]="rowData">
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="releaseNamesList" [(ngModel)]="rowData.releaseName" [style]="{'width':'100%'}"
+              required></p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.releaseName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="userNameList" [(ngModel)]="rowData.userName" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.userName}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="modelList" [(ngModel)]="rowData.model" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+
+          <ng-template pTemplate="output">
+            {{rowData.model}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="roleList" [(ngModel)]="rowData.role" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.role}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td>
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <p-dropdown [options]="availability" [(ngModel)]="rowData.availability" [style]="{'width':'100%'}" required>
+            </p-dropdown>
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{rowData.availability}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td style="text-align:center">
+        <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
+          (click)="onRowEditInit(rowData)" style="margin-right: .5em"></button>
+        <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="ui-button-cancel"
+          (click)="onRowEditDelete(rowData)" style="margin-right: .5em"></button>
+        <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+          (click)="onRowEditSave(rowData)" style="margin-right: .5em"></button>
+        <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
+          (click)="onRowEditCancel(rowData, ri)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <!-- Add Button/Adding new user -->
+  <ng-template pTemplate="summary" let-rowData>
+    <div style="text-align: left;">
+      <button pButton type="button" icon="pi pi-plus" class="ui-button-info" [label]="'Add'" pAddRow [table]="dt"
+        [newRow]="newRow()"></button>
+    </div>
   </ng-template>
 </p-table>
+<!-- ConfirmDialog box for Delete -->
+<p-confirmDialog header="Drop Row" acceptLabel="Yes" rejectLabel="No" [(visible)]="confirmDialogVisible">
+</p-confirmDialog>
