@@ -8,14 +8,19 @@ import { SkillsetPlannerComponent } from './components/skillset-planner/skillset
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
 
 const routes: Routes = [
-  { path: 'teamPlannerList', component: TeamPlannerComponent},
-  { path: 'activityPlannerList', component: ActivityPlannerComponent},
-  { path: 'skillsetPlannerList', component: SkillsetPlannerComponent},
-  { path: 'availabilityList', component: TeamAvailabilityComponent},
+  {
+    path: '',
+    redirectTo: '/teamPlannerList',
+    pathMatch: 'full'
+  }
+  , { path: 'teamPlannerList', component: TeamPlannerComponent },
+  { path: 'activityPlannerList', component: ActivityPlannerComponent },
+  { path: 'skillsetPlannerList', component: SkillsetPlannerComponent },
+  { path: 'availabilityList', component: TeamAvailabilityComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

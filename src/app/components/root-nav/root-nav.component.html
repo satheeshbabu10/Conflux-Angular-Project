@@ -1,29 +1,31 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+
+    <div>
+      <mat-toolbar color="">Menu</mat-toolbar>
+    </div>
+
+    <mat-nav-list class="matlist">
+      <hr>
       <a mat-list-item [routerLink]="['teamPlannerList']">Team Planner</a>
+      <hr>
       <a mat-list-item [routerLink]="['activityPlannerList']">Activity Planner</a>
+      <hr>
       <a mat-list-item [routerLink]="['skillsetPlannerList']">Skillset Planner</a>
-	  <a mat-list-item [routerLink]="['availabilityList']">Availability</a>
+      <hr>
+      <a mat-list-item [routerLink]="['availabilityList']">Availability</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>CONFLUX APPLICATION</span>
+      <span class="toolbar">CONFLUX APPLICATION</span>
     </mat-toolbar>
-<ng-content></ng-content>
+    <ng-content></ng-content>
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>

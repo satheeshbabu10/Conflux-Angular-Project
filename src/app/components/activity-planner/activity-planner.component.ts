@@ -1,3 +1,5 @@
+import { Component, OnInit } from '@angular/core';
+import { Title } from "@angular/platform-browser";
 import { Component, OnInit, ChangeDetectionStrategy, HostListener  } from '@angular/core';
 import { ActivityPlannerService } from 'src/app/services/activity-planner.service';
 
@@ -10,14 +12,19 @@ import { ConfirmationService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Confirmation } from 'primeng/api';
 
-
 @Component({
   selector: 'app-activity-planner',
   templateUrl: './activity-planner.component.html',
   styleUrls: ['./activity-planner.component.css']
 })
 export class ActivityPlannerComponent implements OnInit {
-  
+  constructor(private titleService: Title) {
+
+  }
+
+  ngOnInit(): void {
+    // this.titleService.setTitle("Activity Planner");
+
   activityList: Activity[];
   
   activity: Activity;
