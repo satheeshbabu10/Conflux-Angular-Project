@@ -1,0 +1,8 @@
+[
+    {"keyReference" : "R6.05 Lot 31 Satheesh Sprint 1 training" , "releaseName": "R6.05 Lot 31", "userName": "Satheesh", "sprintName": "Sprint 1", "activity": "training", "plannedEffort": "1"},
+	{"keyReference" : "R6.05 Lot 31 Satheesh Sprint 1 leave" , "releaseName": "R6.05 Lot 31", "userName": "Satheesh", "sprintName": "Sprint 1", "activity": "leave", "plannedEffort": "2"},
+	{"keyReference" : "R6.05 Lot 31 Satheesh Sprint 1 support" , "releaseName": "R6.05 Lot 31", "userName": "Satheesh", "sprintName": "Sprint 1", "activity": "support", "plannedEffort": "3"},
+	{"keyReference" : "R6.05 Lot 31 Satheesh Sprint 1 others" , "releaseName": "R6.05 Lot 31", "userName": "Satheesh", "sprintName": "Sprint 1", "activity": "Others", "plannedEffort": "1"}
+		
+]
+

@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
-
 import { BookDataComponent } from './components/book-data/book-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,9 @@ import { ActivityPlannerComponent } from './components/activity-planner/activity
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
 import { AddRowDirective } from './components/team-planner/add-row.directive';
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
+import { ReactiveFormsModule} from "@angular/forms";
+import { MatCardModule } from "@angular/material/card";
+
 
 // PrimeNg
 import { TableModule } from 'primeng/table';
@@ -41,12 +44,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     CarListComponent,
     RootNavComponent,
     TeamPlannerComponent,
-
-    ActivityPlannerComponent,
+	ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
     TeamAvailabilityComponent
-
+	
   ],
   imports: [ //For Modules and other third party dependency modules like PrimeNg
     BrowserModule,
@@ -64,10 +66,13 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     MatIconModule,
     MatListModule,
     DropdownModule,
-    ConfirmDialogModule,
     AutoCompleteModule
-    
-    
+    MatGridListModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatSelectModule,
+	ReactiveFormsModule,
+	MatCardModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent],
