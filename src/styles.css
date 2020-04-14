@@ -15,8 +15,7 @@ span.toolbar {
 }
 .filterbox {
   font-style: italic;
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+}
 
 div.container{
     margin: 0px 40px;

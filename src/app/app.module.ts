@@ -44,7 +44,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     CarListComponent,
     RootNavComponent,
     TeamPlannerComponent,
-	ActivityPlannerComponent,
+	  ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
     TeamAvailabilityComponent
@@ -66,13 +66,14 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     MatIconModule,
     MatListModule,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule,
     MatGridListModule,
-	MatFormFieldModule,
-	MatInputModule,
-	MatSelectModule,
-	ReactiveFormsModule,
-	MatCardModule
+	  MatFormFieldModule,
+	  MatInputModule,
+	  MatSelectModule,
+	  ReactiveFormsModule,
+    MatCardModule,
+    ConfirmDialogModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent],
