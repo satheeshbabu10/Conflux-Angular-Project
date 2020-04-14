@@ -23,7 +23,7 @@ import { ActivityPlannerComponent } from './components/activity-planner/activity
 import { SkillsetPlannerComponent } from './components/skillset-planner/skillset-planner.component';
 import { AddRowDirective } from './components/team-planner/add-row.directive';
 import { TeamAvailabilityComponent } from './components/team-availability/team-availability.component';
-import { ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 
 
@@ -34,7 +34,12 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import {AutoCompleteModule} from 'primeng/autocomplete';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { SelectItem } from 'primeng/api';
+// import { ConfirmationService } from 'primeng/api';
+// import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Confirmation } from 'primeng/api';
+
 
 
 @NgModule({
@@ -44,11 +49,11 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     CarListComponent,
     RootNavComponent,
     TeamPlannerComponent,
-	ActivityPlannerComponent,
+    ActivityPlannerComponent,
     SkillsetPlannerComponent,
     AddRowDirective,
     TeamAvailabilityComponent
-	
+
   ],
   imports: [ //For Modules and other third party dependency modules like PrimeNg
     BrowserModule,
@@ -66,13 +71,13 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     MatIconModule,
     MatListModule,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule,
     MatGridListModule,
-	MatFormFieldModule,
-	MatInputModule,
-	MatSelectModule,
-	ReactiveFormsModule,
-	MatCardModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent],
