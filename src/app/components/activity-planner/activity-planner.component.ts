@@ -12,6 +12,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Confirmation } from 'primeng/api';
 import { ActivityPlannerService } from 'src/app/services/activity-planner.service';
 
+// Just test JS function,we can use it like this in the TS file.
+function split(sprint){
+  console.log(typeof sprint);
+  var sprint1=sprint.toString().split(",");
+  console.log(sprint1[0]);  
+}
+
 @Component({
   selector: 'app-activity-planner',
   templateUrl: './activity-planner.component.html',
@@ -23,12 +30,13 @@ export class ActivityPlannerComponent implements OnInit {
   activityList: Activity[];
   
   activity: Activity;
-  
+
   cols: any[];
 
   constructor(public activityPlannerService :ActivityPlannerService) { }
   
   ngOnInit() {
+
 	  this.activityPlannerService.getActivityListFromJson().then((activityList) => (this.activityList = activityList));
 	  
 	  this.cols = [
@@ -50,24 +58,38 @@ export class ActivityPlannerComponent implements OnInit {
   public onSubmit() {
     if(this.activityPlannerService.form.valid) {
 	  console.log("for value activity : "+this.activityPlannerService.form.value.activity);
-	  let temp = {...this.activity};
-	  
+    let temp = {...this.activity};
+      
 	  temp.releaseName = this.activityPlannerService.form.value.releaseName;
 	  temp.sprintName = this.activityPlannerService.form.value.sprintName;
-	  temp.userName = this.activityPlannerService.form.value.userName;
+    temp.userName = this.activityPlannerService.form.value.userName;
 	  temp.activity = this.activityPlannerService.form.value.activity;
-	  temp.plannedEffort = this.activityPlannerService.form.value.plannedEffort;
-	  temp.keyReference = temp.releaseName + temp.sprintName + temp.userName + temp.activity;
-	  
-	  this.activityList.push(temp);
-	  
-	  
+    temp.plannedEffort = this.activityPlannerService.form.value.plannedEffort;
+    temp.keyReference = temp.releaseName + temp.sprintName + temp.userName + temp.activity;
+    
+    // this.activityList.push(temp);
+
+    // split(this.activityPlannerService.form.value.activity);
+
+    temp.sprintName=  temp.sprintName.toString().split(",");
+    temp.userName= temp.userName.toString().split(","); 
+    temp.activity=  temp.activity.toString().split(",");
+    console.log(temp.sprintName[0]);
+ 
+       for(var i=0;i<temp.sprintName.length;i++){
+         for(var j=0;j<temp.userName.length;j++){
+           for(var k=0;k<temp.activity.length;k++){
+               this.activityList.push(temp.releaseName,temp.sprintName[i],temp.userName[j],temp.activity[k],temp.plannedEffort,temp.keyReference);
+            }  
+          }
+        }
+        //  console.log(typeof temp);   
+
       this.activityPlannerService.form.reset();
       this.activityPlannerService.initializeFormGroup();
       this.onClose();
     }
   }
-
   public onClose() {
     this.activityPlannerService.form.reset();
     this.activityPlannerService.initializeFormGroup();
@@ -90,7 +112,7 @@ export class ActivityPlannerComponent implements OnInit {
 
   public sprintArray = [
     {label : "Sprint 1", value : "Sprint 1"},
-    {label : "Sprint 1", value : "Sprint 2"},
+    {label : "Sprint 2", value : "Sprint 2"},
 	  {label : "Sprint 3", value : "Sprint 3"},
 	  {label : "Sprint 4", value : "Sprint 4"},
 	  {label : "Sprint 5", value : "Sprint 5"}
