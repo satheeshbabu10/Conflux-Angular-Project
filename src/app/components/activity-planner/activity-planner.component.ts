@@ -58,31 +58,37 @@ export class ActivityPlannerComponent implements OnInit {
   public onSubmit() {
     if(this.activityPlannerService.form.valid) {
 	  console.log("for value activity : "+this.activityPlannerService.form.value.activity);
-    let temp = {...this.activity};
-      
-	  temp.releaseName = this.activityPlannerService.form.value.releaseName;
-	  temp.sprintName = this.activityPlannerService.form.value.sprintName;
-    temp.userName = this.activityPlannerService.form.value.userName;
-	  temp.activity = this.activityPlannerService.form.value.activity;
-    temp.plannedEffort = this.activityPlannerService.form.value.plannedEffort;
-    temp.keyReference = temp.releaseName + temp.sprintName + temp.userName + temp.activity;
     
-    // this.activityList.push(temp);
+	  let releaseName = this.activityPlannerService.form.value.releaseName;
+	  let sprintName = this.activityPlannerService.form.value.sprintName;
+    let userName = this.activityPlannerService.form.value.userName;
+	  let activity = this.activityPlannerService.form.value.activity;
+    let plannedEffort = this.activityPlannerService.form.value.plannedEffort;
+    
+    let sprintNameArray = sprintName.toString().split(","); 
+    let userNameArray = userName.toString().split(","); 
+    let activityArray =  activity.toString().split(",");
 
-    // split(this.activityPlannerService.form.value.activity);
+    console.log(sprintNameArray);
+    console.log(userNameArray);
+    console.log(activityArray);
 
-    temp.sprintName=  temp.sprintName.toString().split(",");
-    temp.userName= temp.userName.toString().split(","); 
-    temp.activity=  temp.activity.toString().split(",");
-    console.log(temp.sprintName[0]);
- 
-       for(var i=0;i<temp.sprintName.length;i++){
-         for(var j=0;j<temp.userName.length;j++){
-           for(var k=0;k<temp.activity.length;k++){
-               this.activityList.push(temp.releaseName,temp.sprintName[i],temp.userName[j],temp.activity[k],temp.plannedEffort,temp.keyReference);
-            }  
-          }
-        }
+    for(var i=0; i<sprintNameArray.length; i++) {
+      for(var j=0; j<userNameArray.length; j++) {
+        for(var k=0; k<activityArray.length; k++) {
+          let temp = {...this.activity};
+      
+          temp.releaseName = releaseName;
+          temp.sprintName = sprintNameArray[i];
+          temp.userName = userNameArray[j];
+          temp.activity = activityArray[k];
+          temp.plannedEffort = plannedEffort;
+          temp.keyReference = temp.releaseName + temp.sprintName + temp.userName + temp.activity;
+          
+          this.activityList.push(temp);
+        }  
+      }
+    }
         //  console.log(typeof temp);   
 
       this.activityPlannerService.form.reset();
