@@ -12,12 +12,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Confirmation } from 'primeng/api';
 import { ActivityPlannerService } from 'src/app/services/activity-planner.service';
 
-// Just test JS function,we can use it like this in the TS file.
-function split(sprint){
-  console.log(typeof sprint);
-  var sprint1=sprint.toString().split(",");
-  console.log(sprint1[0]);  
-}
 
 @Component({
   selector: 'app-activity-planner',
@@ -31,9 +25,13 @@ export class ActivityPlannerComponent implements OnInit {
   
   activity: Activity;
 
+  clonedActivity: { [s: string]: Activity; } = {};
+
   cols: any[];
 
-  constructor(public activityPlannerService :ActivityPlannerService) { }
+  confirmDialogVisible = false;
+
+  constructor(private confirmationservice: ConfirmationService,public activityPlannerService :ActivityPlannerService) { }
   
   ngOnInit() {
 
@@ -49,6 +47,46 @@ export class ActivityPlannerComponent implements OnInit {
     ];
 	
   }
+  onRowEditInit(activity: Activity) {
+    console.log("Activity keyReference: " + activity.keyReference);
+    this.clonedActivity[activity.keyReference] = { ...activity};
+  }
+  onRowEditCancel(activity: Activity, index: number) {
+    this.activityList[index] = this.clonedActivity[activity.keyReference];
+    delete this.clonedActivity[activity.keyReference];
+  }
+
+  onRowEditDelete(activity: Activity) {
+    //this.messageService.add({severity:'success', summary: 'Success', detail:'Car is updated'});
+
+    this.confirmationservice.confirm({
+      message: 'Are you sure you want to delete this record?',
+      accept: () => {
+        let index = this.activityList.indexOf(activity);
+        this.activityList = this.activityList.filter((val, i) => i != index);
+
+      },
+      reject: () => {
+
+      }
+    });
+  }
+
+  onRowEditSave(activity: Activity) {
+    
+    console.log("team userName: " + activity.userName);
+    activity.keyReference = activity.releaseName + activity.sprintName + activity.userName + activity.activity;
+    if (activity.keyReference) {
+
+    } else {
+
+    }
+
+    //this.messageService.add({severity:'success', summary: 'Success', detail:'Car is updated'});
+
+  }
+
+
 
   public onClear() {
     this.activityPlannerService.form.reset();

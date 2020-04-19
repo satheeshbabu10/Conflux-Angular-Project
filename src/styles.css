@@ -22,7 +22,8 @@ div.container{
 }
 
 form.normal-form {
-	margin : 10x;
+  margin : 10x;
+  text-align: center;
 }
 
 .controlers-container {
@@ -42,4 +43,3 @@ form.normal-form {
   width: 100%;
 
 }
-
