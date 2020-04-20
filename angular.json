@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "PrimeNgAngularProject"
+  "defaultProject": "PrimeNgAngularProject",
+  "cli": {
+    "analytics": false
+  }
 }

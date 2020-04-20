@@ -88,6 +88,7 @@ export class TeamPlannerComponent implements OnInit {
   }
 
   onRowEditSave(team: Team) {
+    
     console.log("team userName: " + team.userName);
     team.keyReference = team.releaseName + team.userName + team.model + team.role;
     if (team.keyReference) {

@@ -1,64 +1,78 @@
-<mat-card>
-    <form [formGroup] = "activityPlannerService.form" class="normal-form" (submit) = "onSubmit()">
-        <mat-grid-list cols="2" rowHeight="400px">
-            <mat-grid-tile>
-                <div class="controlers-container">
-                    <input type="hidden" formControlName="$key">
-                    
-                    <mat-form-field>
-                        <mat-select formControlName="releaseName" placeholder="Release Name *">
-                            <mat-option>None</mat-option>
-                            <ng-container *ngFor="let release of releaseArray">
-                                <mat-option value = "{{release.label}}">{{release.value}}</mat-option>
-                            </ng-container>
-                        </mat-select>
-                        <mat-error>This field is mandatory</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-select formControlName="sprintName" placeholder="Sprint Name *" multiple>
-                            <mat-option>None</mat-option>
-                            <ng-container *ngFor="let sprint of sprintArray">
-                                <mat-option value = "{{sprint.label}}">{{sprint.value}}</mat-option>
-                            </ng-container>
-                        </mat-select>
-                        <mat-error>This field is mandatory</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-select formControlName="userName" placeholder="User Name *" multiple>
-                            <mat-option>None</mat-option>
-                            <ng-container *ngFor="let user of userArray">
-                                <mat-option value = "{{user.label}}">{{user.value}}</mat-option>
-                            </ng-container>
-                        </mat-select>
-                        <mat-error>This field is mandatory</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-select formControlName="activity" placeholder="Activities *" multiple>
-                            <mat-option>None</mat-option>
-                            <ng-container *ngFor="let activity of activitiesArray">
-                                <mat-option value = "{{activity.label}}">{{activity.value}}</mat-option>
-                            </ng-container>
-                        </mat-select>
-                        <mat-error>This field is mandatory</mat-error>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input formControlName="plannedEffort" matInput placeholder="Planned Efforts">
-                        
-                        <mat-error>This field is mandatory</mat-error>
-                    </mat-form-field>
-                    <div class="button-row">
-                        <button mat-raised-button color="primary" type="submit" [disabled]="activityPlannerService.form.invalid">Submit</button>
-                        <button mat-raised-button color="warn" (click) = "onClear()">Clear</button>
-                    </div>
-                </div>
-            </mat-grid-tile>
-        </mat-grid-list>
-    </form>
-    </mat-card>
+<!-- Used two mat-card since outer one attached with body  -->
+<mat-card style="text-align:center;">
+  <!-- <mat-card-header>
+    <mat-card-title style="text-align: center;">Details</mat-card-title>
+  </mat-card-header> -->
+  <mat-card style="text-align: center;">
+    <!-- <mat-card-title>Details</mat-card-title> -->
+    <mat-card-content class="input-card">
+        <form [formGroup] = "activityPlannerService.form" class="normal-form" (submit) = "onSubmit()">
+            <mat-grid-list cols="2" rowHeight="400px" class="gridlist">
+                <mat-grid-tile>
+                    <div class="controlers-container">
+                        <input type="hidden" formControlName="$key">
     
-    <mat-card>
+                        <mat-form-field>
+                            <mat-select formControlName="releaseName" placeholder="Release Name *">
+                                <mat-option>None</mat-option>
+                                <ng-container *ngFor="let release of releaseArray">
+                                    <mat-option value = "{{release.label}}">{{release.value}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-error>This field is mandatory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select formControlName="sprintName" placeholder="Sprint Name *" multiple>
+                                <mat-option>None</mat-option>
+                                <ng-container *ngFor="let sprint of sprintArray">
+                                    <mat-option value = "{{sprint.label}}">{{sprint.value}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-error>This field is mandatory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select formControlName="userName" placeholder="User Name *" multiple>
+                                <mat-option>None</mat-option>
+                                <ng-container *ngFor="let user of userArray">
+                                    <mat-option value = "{{user.label}}">{{user.value}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-error>This field is mandatory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-select formControlName="activity" placeholder="Activities *" multiple>
+                                <mat-option>None</mat-option>
+                                <ng-container *ngFor="let activity of activitiesArray">
+                                    <mat-option value = "{{activity.label}}">{{activity.value}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                            <mat-error>This field is mandatory</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input formControlName="plannedEffort" matInput placeholder="Planned Efforts">
+    
+                            <mat-error>This field is mandatory</mat-error>
+                        </mat-form-field>
+                        <div class="button-row">
+                            <button mat-raised-button color="primary" type="submit" [disabled]="activityPlannerService.form.invalid">Submit</button>
+                            <button mat-raised-button color="warn" (click) = "onClear()">Clear</button>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+        </mat-card-content>
+        </mat-card>  
+</mat-card>
+
+<mat-card>
+    <mat-card style="text-align: center;">
+      <!-- <mat-card-header>
+      <mat-card-title>Table</mat-card-title>
+    </mat-card-header> -->
+      <mat-card-content>
         <p-table [value]="activityList" dataKey="keyReference" editMode="row" [columns]="cols" selectionMode="single"
-      [paginator]="true" [rows]="100" #dt>
+      [paginator]="true" [rows]="100" #dt class="activity-table">
       <ng-template pTemplate="caption">Activity Planner</ng-template>
           
       <ng-template pTemplate="header">
@@ -68,6 +82,7 @@
           <th>User Name</th>
           <th>Activity</th>
           <th>Planned Effort</th>
+          <th>Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
@@ -127,11 +142,25 @@
               </ng-template>
             </p-cellEditor>
           </td>
+          <td style="text-align:center">
+            <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info"
+              (click)="onRowEditInit(rowData)" style="margin-right: .5em"></button>
+            <button *ngIf="!editing" pButton type="button" pDeleteEditableRow icon="pi pi-trash" class="ui-button-cancel"
+              (click)="onRowEditDelete(rowData)" style="margin-right: .5em"></button>
+            <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success"
+              (click)="onRowEditSave(rowData)" style="margin-right: .5em"></button>
+            <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"
+              (click)="onRowEditCancel(rowData, ri)"></button>
+          </td>
+    
           
         </tr>
       </ng-template>
       <!-- Add Button/Adding new user -->
      
     </p-table>
-    
-    </mat-card>
+  </mat-card-content>    
+ </mat-card>
+</mat-card>
+<p-confirmDialog header="Delete Row" acceptLabel="Yes" rejectLabel="No" [(visible)]="confirmDialogVisible">
+</p-confirmDialog>
